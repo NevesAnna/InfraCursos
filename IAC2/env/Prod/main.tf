@@ -3,8 +3,8 @@ module "aws-prod" {
     instancia = "t2.micro"
     regiao_aws = "us-west-2"
     chave = "IaC-Prod" 
-    nomeMaquina = "TerraformProd"
+    nomeMaquina = "TerraformProd2"
 }
 output "IP-Prod" {
-    value = module.aws-dev.IP_Publico  
+    value = module.aws-prod.IP_Publico  
 }

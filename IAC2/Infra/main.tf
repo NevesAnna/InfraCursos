@@ -18,7 +18,7 @@ resource "aws_instance" "app_server" {
   instance_type = var.instancia
   key_name = var.chave
   tags = {
-    Name = "TerraformAnsible"
+    Name = "TerraformAnsible22"
   }
 }
 resource "aws_key_pair" "chavesSSH" {
