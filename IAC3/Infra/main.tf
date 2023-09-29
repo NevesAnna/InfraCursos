@@ -39,6 +39,24 @@ resource "aws_autoscaling_group" "grupo" {
   }
   target_group_arns = var.producao ? [aws_lb_target_group.alvoLoadBalancer[0].arn] : []
   }
+resource "aws_autoscaling_schedule" "ligar" {
+  scheduled_action_name  = "ligar"
+  min_size               = 0
+  max_size               = 1
+  desired_capacity       = 1
+  start_time             = timeadd(timestamp(),"10m")
+  autoscaling_group_name = aws_autoscaling_group.grupo.name 
+  recurrence = "0 10 * * mon-fri"
+}
+resource "aws_autoscaling_schedule" "desligar" {
+  scheduled_action_name  = "desligar"
+  min_size               = 0
+  max_size               = 1
+  desired_capacity       = 0
+  start_time             = timeadd(timestamp(),"11m")
+  autoscaling_group_name = aws_autoscaling_group.grupo.name 
+  recurrence = "0 21 * * mon-fri"
+}
 resource "aws_default_subnet" "subnet_1" {
   availability_zone = "${var.regiao_aws}a"
 }
