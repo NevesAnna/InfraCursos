@@ -48,7 +48,7 @@ module "ecs_service" {
         container_port   = 8000
     }
   }     
-      subnet_ids = [module.vpc.private_subnets, 0]
+      subnet_ids = module.vpc.private_subnets
       security_group_rules = [aws_security_group.privado.id]
     }
   }
